@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5294266295145455508}
   m_Layer: 0
   m_Name: BridgeContainer
-  m_TagString: Straight
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2561079771327447478}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: e066f723272e5c844a97a7c89e635766,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e066f723272e5c844a97a7c89e635766,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -117,6 +122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e066f723272e5c844a97a7c89e635766,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e066f723272e5c844a97a7c89e635766, type: 3}

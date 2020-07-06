@@ -38,34 +38,38 @@ public class DrawTrails : MonoBehaviour
     {
         if (IsMouseOverUI())
         {
-            if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
+            if (SymbolManager.SM.canDraw)
             {
-                triggers = FindObjectsOfType<TriggerDetection>();
-                screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
-                drawPos = cam.ScreenToWorldPoint(screenPos);
-
-                thisTrail = (GameObject)Instantiate(swipePrefab, drawPos, Quaternion.identity);
-            }
-            else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0))
-            {
-                screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
-                drawPos = cam.ScreenToWorldPoint(screenPos);
-
-                if (thisTrail != null)
-                    thisTrail.transform.position = drawPos;
-            }
-            else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0))
-            {
-                for (int i = 0; i < triggers.Length; i++)
+                if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
                 {
-                    if (triggers[i].CorrectSymbol())
-                    {
-                        Destroy(SymbolManager.SM.symbol);
-                        break;
-                    }
-                }
+                    triggers = FindObjectsOfType<TriggerDetection>();
+                    screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
+                    drawPos = cam.ScreenToWorldPoint(screenPos);
 
-                DestroyTrail();
+                    thisTrail = (GameObject)Instantiate(swipePrefab, drawPos, Quaternion.identity);
+                }
+                else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0))
+                {
+                    screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
+                    drawPos = cam.ScreenToWorldPoint(screenPos);
+
+                    if (thisTrail != null)
+                        thisTrail.transform.position = drawPos;
+                }
+                else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0))
+                {
+                    for (int i = 0; i < triggers.Length; i++)
+                    {
+                        if (triggers[i].CorrectSymbol())
+                        {
+                            Destroy(SymbolManager.SM.symbol);
+                            SymbolManager.SM.canDraw = false;
+                            break;
+                        }
+                    }
+
+                    DestroyTrail();
+                }
             }
         }
         else

@@ -31,10 +31,8 @@ public class SymbolManager : MonoBehaviour
     public List<SymbolType> symbolType;
     public GameObject symbol;
     public int triggerCount;
-
-    public bool isSquare;
-    Transform player;
-    TiltMovement tm;
+    public bool canDraw = false;
+    public bool canJump = false;
 
     void Awake()
     {
@@ -51,13 +49,7 @@ public class SymbolManager : MonoBehaviour
 
     void Start()
     {
-        if (isSquare)
-            SpawnSymbol(SymbolTag.Square);
-        else
-            SpawnSymbol(SymbolTag.Triangle);
-
-        player = GameObject.Find("Player").transform;
-        tm = GameObject.Find("Player").GetComponent<TiltMovement>();
+        SpawnSymbol(SymbolTag.Square);
     }
 
     public void SpawnSymbol(SymbolTag tag)
@@ -68,6 +60,7 @@ public class SymbolManager : MonoBehaviour
             {
                 symbol = Instantiate(symbolType[i].symbol, transform.position, Quaternion.identity);
                 symbol.name = symbolType[i].symbol.name;
+                canDraw = true;
             }
         }
     }
@@ -82,7 +75,7 @@ public class SymbolManager : MonoBehaviour
                 {
                     case SymbolFunction.Right:
                         Debug.Log("Right");
-                        tm.Jump();
+                        canJump = true;
                         break;
 
                     case SymbolFunction.Left:

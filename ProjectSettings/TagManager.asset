@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Swipe
-  - Straight
-  - Horizontal
+  - Ground
+  - Base
+  - LPlatform
+  - TPlatform
   layers:
   - Default
   - TransparentFX

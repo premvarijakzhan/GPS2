@@ -28,11 +28,8 @@ public class PlatformManager : MonoBehaviour
 
         if (transform.childCount < initAmount)
         {
-            if (lastPlatform.CompareTag("Straight"))
-            {
-                spawnZ = lastPlatform.transform.position.z;
-                spawnZ += newPlatformLength;
-            }
+            spawnZ = lastPlatform.transform.position.z;
+            spawnZ += newPlatformLength;
             
             SpawnNewPlatform();
         }
