@@ -20,6 +20,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         pauseButton.SetActive(true);
         countDownDisplay.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void Pause()
@@ -53,7 +54,6 @@ public class PauseMenu : MonoBehaviour
         {
             pauseMenuUI.SetActive(true);
             pauseButton.SetActive(false);
-            //countDownDisplay.gameObject.SetActive(true);
         }
     }
 

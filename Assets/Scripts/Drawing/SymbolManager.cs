@@ -5,13 +5,15 @@ using UnityEngine;
 public enum SymbolTag
 {
     Square,
-    Triangle
+    Triangle,
+    Alpha
 }
 
 public enum SymbolFunction
 { 
     Right,
-    Left
+    Left,
+    Jump
 }
 
 [System.Serializable]
@@ -31,7 +33,10 @@ public class SymbolManager : MonoBehaviour
     public List<SymbolType> symbolType;
     public GameObject symbol;
     public int triggerCount;
-    public bool canDraw = false;
+    public bool canDraw;
+    
+    public bool turnRight = false;
+    public bool turnLeft = false;
     public bool canJump = false;
 
     void Awake()
@@ -49,7 +54,7 @@ public class SymbolManager : MonoBehaviour
 
     void Start()
     {
-        SpawnSymbol(SymbolTag.Square);
+        canDraw = false;
     }
 
     public void SpawnSymbol(SymbolTag tag)
@@ -75,12 +80,17 @@ public class SymbolManager : MonoBehaviour
                 {
                     case SymbolFunction.Right:
                         Debug.Log("Right");
-                        canJump = true;
+                        turnRight = true;
                         break;
 
                     case SymbolFunction.Left:
                         Debug.Log("Left");
-                        //function
+                        turnLeft = true;
+                        break;
+
+                    case SymbolFunction.Jump:
+                        Debug.Log("Jump");
+                        canJump = true;
                         break;
                 }
             }

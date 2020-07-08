@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour
 {
     private GameObject buttons;
     private GameObject settingsPanel;
-    private GameObject shopPanel;
+    private GameObject storePanel;
     private GameObject creditsPanel;
     private GameObject confirmationPanel;
+
+    private int highScoreCount;
+    public Text highScoreText;
 
     private Scene scene;
     private string sceneName;
@@ -23,17 +27,20 @@ public class SceneManagerScript : MonoBehaviour
 
         if (sceneName == "MainMenu")
         {
-            buttons = GameObject.Find("MainMenuCanvas").transform.GetChild(0).gameObject;
-            settingsPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(1).gameObject;
-            shopPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(2).gameObject;
-            creditsPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(3).gameObject;
-            confirmationPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(4).gameObject;
+            buttons = GameObject.Find("MainMenuCanvas").transform.GetChild(2).gameObject;
+            settingsPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(3).gameObject;
+            storePanel = GameObject.Find("MainMenuCanvas").transform.GetChild(4).gameObject;
+            creditsPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(5).gameObject;
+            confirmationPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(6).gameObject;
             
             settingsPanel.SetActive(false);
-            shopPanel.SetActive(false);
+            storePanel.SetActive(false);
             creditsPanel.SetActive(false);
             confirmationPanel.SetActive(false);
-        }
+
+            if (PlayerPrefs.HasKey("highscore"))
+                highScoreCount = PlayerPrefs.GetInt("highscore");
+        }        
     }
 
     void Update()
@@ -42,11 +49,22 @@ public class SceneManagerScript : MonoBehaviour
         {
             Back();
         }
+
+        if (scene.name == "MainMenu")
+        {
+            if (GameManagerScript.score > highScoreCount)
+            {
+                highScoreCount = GameManagerScript.score;
+                PlayerPrefs.SetInt("highscore", highScoreCount);
+            }
+
+            highScoreText.text = highScoreCount.ToString();
+        }
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Scene1");
+        SceneManager.LoadScene("Level");
     }
 
     public void Settings()
@@ -55,9 +73,9 @@ public class SceneManagerScript : MonoBehaviour
         buttons.SetActive(false);
     }
 
-    public void Shop()
+    public void Store()
     {
-        shopPanel.SetActive(true);
+        storePanel.SetActive(true);
         buttons.SetActive(false);
     }
 
@@ -77,12 +95,12 @@ public class SceneManagerScript : MonoBehaviour
                 buttons.SetActive(false);
             }
 
-            if (settingsPanel != null || shopPanel != null || creditsPanel != null)
+            if (settingsPanel != null || storePanel != null || creditsPanel != null)
             {
-                if (settingsPanel.activeSelf || shopPanel.activeSelf || creditsPanel.activeSelf)
+                if (settingsPanel.activeSelf || storePanel.activeSelf || creditsPanel.activeSelf)
                 {
                     settingsPanel.SetActive(false);
-                    shopPanel.SetActive(false);
+                    storePanel.SetActive(false);
                     creditsPanel.SetActive(false);
                     confirmationPanel.SetActive(false);
                     buttons.SetActive(true);

@@ -30,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
-            if (SymbolManager.SM.canJump && !isJumping)
+            /*if (SymbolManager.SM.canJump && !isJumping)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+            }*/
         }
     }
 
@@ -59,6 +59,6 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = false;
         isJumping = true;
-        SymbolManager.SM.canJump = false;
+        //SymbolManager.SM.canJump = false;
     }
 }

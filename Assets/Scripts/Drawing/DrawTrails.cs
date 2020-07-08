@@ -5,10 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DrawTrails : MonoBehaviour
 {
-    public static DrawTrails DT = null;
-
     public GameObject swipePrefab;
-    public bool mouseInteraction = true;
     public Camera cam;
 
     GameObject thisTrail;
@@ -16,22 +13,9 @@ public class DrawTrails : MonoBehaviour
     Vector3 drawPos;
     TriggerDetection[] triggers;
 
-    void Awake()
-    {
-        if (DT == null)
-        {
-            DT = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (DT != this)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
     void Start()
     {
-        triggers = FindObjectsOfType<TriggerDetection>();
+        
     }
 
     void Update()
@@ -42,7 +26,6 @@ public class DrawTrails : MonoBehaviour
             {
                 if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
                 {
-                    triggers = FindObjectsOfType<TriggerDetection>();
                     screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
                     drawPos = cam.ScreenToWorldPoint(screenPos);
 
@@ -58,9 +41,11 @@ public class DrawTrails : MonoBehaviour
                 }
                 else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0))
                 {
-                    for (int i = 0; i < triggers.Length; i++)
+                    triggers = FindObjectsOfType<TriggerDetection>();
+
+                    foreach (TriggerDetection td in triggers)
                     {
-                        if (triggers[i].CorrectSymbol())
+                        if (td.CorrectSymbol())
                         {
                             Destroy(SymbolManager.SM.symbol);
                             SymbolManager.SM.canDraw = false;
@@ -68,36 +53,46 @@ public class DrawTrails : MonoBehaviour
                         }
                     }
 
-                    DestroyTrail();
+                    Destroy(thisTrail);
+                    SymbolManager.SM.triggerCount = 0;
+                        
+                    foreach (TriggerDetection td in triggers)
+                    {
+                        td.isFirstNode = false;
+                        td.isLastNode = false;
+                        td.alreadyTriggered = false;
+                        td.isLastNodeTriggered = false;
+                    }
                 }
             }
-        }
-        else
-        {
-            DestroyTrail();
         }
     }
 
     void DestroyTrail()
     {
         Destroy(thisTrail);
-
         SymbolManager.SM.triggerCount = 0;
 
-        for (int i = 0; i < triggers.Length; i++)
+        if (SymbolManager.SM.canDraw)
         {
-            triggers[i].isFirstNode = false;
-            triggers[i].isLastNode = false;
-            triggers[i].alreadyTriggered = false;
-            triggers[i].isLastNodeTriggered = false;
+            triggers = FindObjectsOfType<TriggerDetection>();
+            Debug.Log(FindObjectsOfType<TriggerDetection>().Length);
+
+            foreach (TriggerDetection td in triggers)
+            {
+                td.isFirstNode = false;
+                td.isLastNode = false;
+                td.alreadyTriggered = false;
+                td.isLastNodeTriggered = false;
+            }
         }
     }
 
     bool IsMouseOverUI()
     {
-        if (mouseInteraction)
-            return EventSystem.current.IsPointerOverGameObject();
-        else
-            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+        if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.IsPointerOverGameObject(0))
+            return true;
+
+        return false;
     }
 }

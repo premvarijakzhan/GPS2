@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript GMS = null;
 
+    public static int score;
+    public Text scoreText;
     public bool isGameOver = false;
 
     void Awake()
@@ -23,11 +27,16 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
-        
+        score = 0;
+        scoreText.text = score.ToString();
     }
 
     void Update()
     {
-        
+        if (isGameOver)
+        {
+            SceneManager.LoadScene("GameOver");
+            isGameOver = false;
+        }
     }
 }
