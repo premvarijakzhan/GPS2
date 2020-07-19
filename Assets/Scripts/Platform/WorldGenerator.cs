@@ -4,9 +4,12 @@ public class WorldGenerator : MonoBehaviour
 {
     GameObject dummyTraveller;
 
+    // Start is called before the first frame update
     void Start()
     {
         dummyTraveller = new GameObject("dummy");
+
+
 
         for (int i = 0; i < 20; i++)
         {
@@ -17,6 +20,8 @@ public class WorldGenerator : MonoBehaviour
             p.transform.position = dummyTraveller.transform.position;
             p.transform.rotation = dummyTraveller.transform.rotation;
 
+
+
             if (p.tag == "platformTSection")
             {
                 if (Random.Range(0, 2) == 0)
@@ -26,7 +31,11 @@ public class WorldGenerator : MonoBehaviour
 
                 dummyTraveller.transform.Translate(Vector3.forward * -10);
             }
+
             dummyTraveller.transform.Translate(Vector3.forward * -10);
         }
+
     }
+
+
 }

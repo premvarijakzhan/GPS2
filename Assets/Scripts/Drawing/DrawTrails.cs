@@ -13,57 +13,43 @@ public class DrawTrails : MonoBehaviour
     Vector3 drawPos;
     TriggerDetection[] triggers;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        if (IsMouseOverUI())
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) || Input.GetMouseButtonDown(0))
         {
-            if (SymbolManager.SM.canDraw)
+            screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
+            drawPos = cam.ScreenToWorldPoint(screenPos);
+
+            thisTrail = (GameObject)Instantiate(swipePrefab, drawPos, Quaternion.identity);
+        }
+        else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) || Input.GetMouseButton(0))
+        {
+            screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
+            drawPos = cam.ScreenToWorldPoint(screenPos);
+
+            if (thisTrail != null)
+                thisTrail.transform.position = drawPos;
+        }
+        else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0))
+        {
+            CheckSymbol();
+        }
+    }
+
+    public void CheckSymbol()
+    {
+        foreach (SymbolType st in SymbolManager.SM.symbolType)
+        {
+            if (SymbolManager.SM.symbol != null && SymbolManager.SM.symbol.name == st.symbol.name)
             {
-                if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
+                if (SymbolManager.SM.triggerCount == st.nodes)
                 {
-                    screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
-                    drawPos = cam.ScreenToWorldPoint(screenPos);
-
-                    thisTrail = (GameObject)Instantiate(swipePrefab, drawPos, Quaternion.identity);
+                    SymbolManager.SM.triggerCount = st.nodes;
+                    SymbolManager.SM.DoFunction(st.function);
+                    Destroy(SymbolManager.SM.symbol);
                 }
-                else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) || Input.GetMouseButton(0))
-                {
-                    screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5);
-                    drawPos = cam.ScreenToWorldPoint(screenPos);
 
-                    if (thisTrail != null)
-                        thisTrail.transform.position = drawPos;
-                }
-                else if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || Input.GetMouseButtonUp(0))
-                {
-                    triggers = FindObjectsOfType<TriggerDetection>();
-
-                    foreach (TriggerDetection td in triggers)
-                    {
-                        if (td.CorrectSymbol())
-                        {
-                            Destroy(SymbolManager.SM.symbol);
-                            SymbolManager.SM.canDraw = false;
-                            break;
-                        }
-                    }
-
-                    Destroy(thisTrail);
-                    SymbolManager.SM.triggerCount = 0;
-                        
-                    foreach (TriggerDetection td in triggers)
-                    {
-                        td.isFirstNode = false;
-                        td.isLastNode = false;
-                        td.alreadyTriggered = false;
-                        td.isLastNodeTriggered = false;
-                    }
-                }
+                DestroyTrail();
             }
         }
     }
@@ -73,26 +59,15 @@ public class DrawTrails : MonoBehaviour
         Destroy(thisTrail);
         SymbolManager.SM.triggerCount = 0;
 
-        if (SymbolManager.SM.canDraw)
+        triggers = FindObjectsOfType<TriggerDetection>();
+
+        foreach (TriggerDetection td in triggers)
         {
-            triggers = FindObjectsOfType<TriggerDetection>();
-            Debug.Log(FindObjectsOfType<TriggerDetection>().Length);
-
-            foreach (TriggerDetection td in triggers)
-            {
-                td.isFirstNode = false;
-                td.isLastNode = false;
-                td.alreadyTriggered = false;
-                td.isLastNodeTriggered = false;
-            }
+            td.isFirstNode = false;
+            td.isLastNode = false;
+            td.alreadyTriggered = false;
+            td.isLastNodeTriggered = false;
         }
-    }
 
-    bool IsMouseOverUI()
-    {
-        if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.IsPointerOverGameObject(0))
-            return true;
-
-        return false;
     }
 }

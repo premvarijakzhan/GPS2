@@ -43,22 +43,4 @@ public class TriggerDetection : MonoBehaviour
             }
         }
     }
-
-    public bool CorrectSymbol()
-    {
-        foreach (SymbolType st in SymbolManager.SM.symbolType)
-        {
-            if (SymbolManager.SM.symbol != null && SymbolManager.SM.symbol.name == st.symbol.name)
-            {
-                if (SymbolManager.SM.triggerCount == st.nodes)
-                {
-                    SymbolManager.SM.triggerCount = st.nodes;
-                    SymbolManager.SM.DoFunction(st.function);
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
 }

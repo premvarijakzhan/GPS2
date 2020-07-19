@@ -24,12 +24,11 @@ public class Pool : MonoBehaviour
             for (int i = 0; i < item.amount; i++)
             {
                 GameObject obj = Instantiate(item.prefab);
+                obj.transform.SetParent(transform);
                 obj.SetActive(false);
                 pooledItems.Add(obj);
             }
         }
-
-
     }
 
     public GameObject GetRandom()
@@ -52,26 +51,10 @@ public class Pool : MonoBehaviour
                 pooledItems.Add(obj);
                 return obj;
             }
-
         }
 
         return null;
     }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
 }
 
 //Fisher YatesShuffle algorithm 

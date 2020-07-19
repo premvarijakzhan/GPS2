@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717920}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: polySurface3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717922}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 6390885499934717924}
   - component: {fileID: 6390885499937617866}
   - component: {fileID: 6390885499936486666}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: polySurface5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717926}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: polySurface4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717928}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: pCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717930}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717932}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: -8333450341889972457}
   - component: {fileID: 2103140090730351742}
   - component: {fileID: 5592657446813485563}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: platformTSection
   m_TagString: platformTSection
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6390885499934485454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2872a04344ddeb948bb7e7b8a3e88786, type: 3}
+  m_Script: {fileID: 11500000, guid: 410cee7d4e4ce5843a799cfb2d06195e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &-1081079176253351824
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6390885499934485454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04c922eca82e0c41a3403864ebfb6a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f9b0dee5aed2704a80d86072541be0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!64 &2103140090730351742
@@ -403,8 +403,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.13
-  m_Center: {x: 0, y: 0.72, z: 7}
+  m_Radius: 3.14
+  m_Center: {x: 0, y: 0.72, z: 0.69}
 --- !u!1 &6390885499934485456
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717936}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: transform6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717938}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: transform5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717944}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717946}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717948}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: transform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390885499934717950}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: transform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

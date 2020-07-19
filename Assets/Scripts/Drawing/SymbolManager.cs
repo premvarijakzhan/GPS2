@@ -33,7 +33,6 @@ public class SymbolManager : MonoBehaviour
     public List<SymbolType> symbolType;
     public GameObject symbol;
     public int triggerCount;
-    public bool canDraw;
     
     public bool turnRight = false;
     public bool turnLeft = false;
@@ -52,11 +51,6 @@ public class SymbolManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        canDraw = false;
-    }
-
     public void SpawnSymbol(SymbolTag tag)
     {
         for (int i = 0; i < symbolType.Count; i++)
@@ -65,7 +59,6 @@ public class SymbolManager : MonoBehaviour
             {
                 symbol = Instantiate(symbolType[i].symbol, transform.position, Quaternion.identity);
                 symbol.name = symbolType[i].symbol.name;
-                canDraw = true;
             }
         }
     }

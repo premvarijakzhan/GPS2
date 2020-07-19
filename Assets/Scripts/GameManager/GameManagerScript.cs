@@ -37,6 +37,7 @@ public class GameManagerScript : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
             isGameOver = false;
+            SymbolManager.SM.triggerCount = 0;
         }
     }
 }

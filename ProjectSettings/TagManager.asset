@@ -9,6 +9,12 @@ TagManager:
   - Base
   - LPlatform
   - TPlatform
+  - platformZ
+  - platformTSection
+  - platformZSplit
+  - platformZThin
+  - platformLSectionLeft
+  - platformLSectionRight
   layers:
   - Default
   - TransparentFX
