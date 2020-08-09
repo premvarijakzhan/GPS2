@@ -18,11 +18,11 @@ public class CameraController : MonoBehaviour
         startOffset = transform.position - player.position;
     }
 
-    void Update()
+    void LateUpdate()
     {
         moveVector = player.position + startOffset;
         moveVector.x = 0;
-        moveVector.y = Mathf.Clamp(moveVector.y, 5, 8);
+        moveVector.y = Mathf.Clamp(moveVector.y, 3, 8);
 
         if (transition > 1f)
         {

@@ -5,16 +5,20 @@ TagManager:
   serializedVersion: 2
   tags:
   - Swipe
-  - Ground
   - Base
-  - LPlatform
-  - TPlatform
   - platformZ
   - platformTSection
-  - platformZSplit
-  - platformZThin
   - platformLSectionLeft
   - platformLSectionRight
+  - Obstacles
+  - ObstaclesTrigger
+  - Gem
+  - Magnet
+  - Shield
+  - Booster
+  - TurnTrigger
+  - Box
+  - DeathCollider
   layers:
   - Default
   - TransparentFX

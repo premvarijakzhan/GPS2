@@ -19,6 +19,7 @@ public class Pool : MonoBehaviour
         singleton = this;
 
         pooledItems = new List<GameObject>();
+
         foreach (PoolItem item in items)
         {
             for (int i = 0; i < item.amount; i++)
@@ -47,6 +48,7 @@ public class Pool : MonoBehaviour
             if (item.expandable)
             {
                 GameObject obj = Instantiate(item.prefab);
+                obj.transform.SetParent(transform);
                 obj.SetActive(false);
                 pooledItems.Add(obj);
                 return obj;

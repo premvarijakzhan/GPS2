@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,7 +13,9 @@ public class PauseMenu : MonoBehaviour
     public bool showCountDown = false;
     public int countDown = 3;
     public float time = 1f;
-    public Text countDownDisplay;
+    public TextMeshProUGUI countDownDisplay;
+
+    public DrawTrails dt;
 
     void Start()
     {
@@ -41,6 +43,10 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        GameManagerScript.coin = 0;
+        GameManagerScript.score = 0;
+        GameManagerScript.distance = 0;
+        Time.timeScale = 1f;
     }
 
     void OnApplicationPause(bool paused)
@@ -49,6 +55,7 @@ public class PauseMenu : MonoBehaviour
         {
             isPaused = true;
             Time.timeScale = 0f;
+            dt.DestroyTrail();
         }
         else
         {

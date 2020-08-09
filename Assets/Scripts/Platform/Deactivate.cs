@@ -5,7 +5,7 @@ public class Deactivate : MonoBehaviour
     //bool dScheduled = false;
     void OnCollisionExit(Collision player)
     {
-        if (player.gameObject.tag == "Player")
+        if (player.gameObject.CompareTag("Player"))
             Invoke("SetInactive", 4.0f);
         // dScheduled = true;
     }
