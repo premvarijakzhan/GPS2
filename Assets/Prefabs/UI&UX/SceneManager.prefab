@@ -43,4 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4f23c299f94324e9c7f9fc6634f503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeTimer: 2
+  highScoreCount: 0
+  currentAmount: 0
+  newAmount: 0
+  highScoreText: {fileID: 0}
+  coinText: {fileID: 0}
   pm: {fileID: 0}

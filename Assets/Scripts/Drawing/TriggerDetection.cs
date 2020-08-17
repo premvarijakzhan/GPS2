@@ -19,7 +19,7 @@ public class TriggerDetection : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Swipe"))
         {
-            if (!alreadyTriggered)
+            if (!alreadyTriggered && !SymbolManager.SM.isComplete)
             {
                 SymbolManager.SM.triggerCount++;
                 alreadyTriggered = true;
@@ -33,6 +33,7 @@ public class TriggerDetection : MonoBehaviour
                     {
                         SymbolManager.SM.triggerCount++;
                         isLastNodeTriggered = true;
+                        SymbolManager.SM.isComplete = true;
                     }
 
                     if (SymbolManager.SM.triggerCount == 1)

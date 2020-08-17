@@ -46,6 +46,7 @@ public class DrawTrails : MonoBehaviour
     {
         Destroy(thisTrail);
         SymbolManager.SM.triggerCount = 0;
+        SymbolManager.SM.isComplete = false;
 
         triggers = FindObjectsOfType<TriggerDetection>();
 

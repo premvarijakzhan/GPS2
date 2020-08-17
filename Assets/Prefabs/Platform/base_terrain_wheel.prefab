@@ -128,8 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410cee7d4e4ce5843a799cfb2d06195e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBoosterTimer: 0
-  upgradeBoosterTimer: 0
+  boosterTimer: 0
 --- !u!114 &3747325213136479114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +357,7 @@ PrefabInstance:
     - target: {fileID: 8191326099942583813, guid: bf968b1efe575c943a3d5623ce606b14,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8191326099942583813, guid: bf968b1efe575c943a3d5623ce606b14,
         type: 3}

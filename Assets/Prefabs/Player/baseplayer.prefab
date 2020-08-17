@@ -101,8 +101,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2036868198047730735}
-  - component: {fileID: 7372322250049958103}
   - component: {fileID: 887882852277902510}
+  - component: {fileID: 3171539238714827518}
   m_Layer: 0
   m_Name: GemMagnet
   m_TagString: Untagged
@@ -124,19 +124,6 @@ Transform:
   m_Father: {fileID: 3031770227917468874}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7372322250049958103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376217498337513857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f85c3a72143bd9a488b4cdf764f4c819, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magnetTimer: 0
 --- !u!54 &887882852277902510
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,6 +140,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &3171539238714827518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376217498337513857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85c3a72143bd9a488b4cdf764f4c819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetTimer: 0
 --- !u!1 &3031770227610358964
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 3031770227917468885}
   m_Layer: 0
   m_Name: baseplayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1497,3 +1497,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f76f61e6122c14eb03e99f19b44c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldTimer: 0

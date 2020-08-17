@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
 
     public static bool boosterActive;
 
+    public GameObject tiltTutorial;
+
     public static bool isDead;
 
     void Start()
@@ -118,33 +120,25 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other is BoxCollider && !DegenerateWorld.lastPlatform.CompareTag("platformTSection"))
+        if (other is BoxCollider && !DegenerateWorld.lastPlatform.CompareTag("platformTSection") &&
+                                    !DegenerateWorld.lastPlatform.CompareTag("platformLSectionLeft") &&
+                                    !DegenerateWorld.lastPlatform.CompareTag("platformLSectionRight"))
             DegenerateWorld.RunDummy();
-
+        
         if (other is SphereCollider && other.gameObject.CompareTag("platformTSection"))
-        {
             SymbolManager.SM.SpawnSymbols(SymbolTag.Square, SymbolTag.Triangle);
-        }
 
         if (other is SphereCollider && other.gameObject.CompareTag("platformLSectionLeft"))
-        {
             SymbolManager.SM.SpawnSymbol(SymbolTag.Triangle);
-        }
 
         if (other is SphereCollider && other.gameObject.CompareTag("platformLSectionRight"))
-        {
             SymbolManager.SM.SpawnSymbol(SymbolTag.Square);
-        }
 
         if (other.gameObject.CompareTag("TurnTrigger"))
-        {
             canTurn = true;
-        }
 
         if (other.gameObject.CompareTag("ObstaclesTrigger"))
-        {
             SymbolManager.SM.SpawnSymbol(SymbolTag.Alpha);
-        }
 
         if (other.gameObject.CompareTag("Obstacles") || other.gameObject.CompareTag("Box"))
         {
@@ -165,9 +159,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Box"))
         {
             if (shieldActive)
-            {
                 Destroy(SymbolManager.SM.symbol);
-            }
         }
 
         if (other.gameObject.CompareTag("Gem"))
@@ -194,6 +186,11 @@ public class Player : MonoBehaviour
         {
             boosterActive = true;
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.name == "TutorialTrigger")
+        {
+
         }
     }
 

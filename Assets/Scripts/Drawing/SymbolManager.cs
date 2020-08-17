@@ -35,7 +35,8 @@ public class SymbolManager : MonoBehaviour
     public GameObject symbol1;
     public GameObject symbol2;
     public int triggerCount;
-    
+
+    public bool isComplete = false;
     public bool turnRight = false;
     public bool turnLeft = false;
     public bool canJump = false;
@@ -131,7 +132,7 @@ public class SymbolManager : MonoBehaviour
 
             if (symbol1 != null && symbol1.name == st.symbol.name)
             {
-                if (triggerCount == st.nodes)
+                if (isComplete)
                 {
                     triggerCount = st.nodes;
                     DoFunction(st.function);
@@ -144,10 +145,9 @@ public class SymbolManager : MonoBehaviour
 
             if (symbol2 != null && symbol2.name == st.symbol.name)
             {
-                if (triggerCount == st.nodes)
+                if (isComplete)
                 {
-                    triggerCount = st.nodes;
-                    DoFunction(st.function);
+                    DoFunction(SymbolFunction.Left);
                     Destroy(symbol1);
                     Destroy(symbol2);
                 }
