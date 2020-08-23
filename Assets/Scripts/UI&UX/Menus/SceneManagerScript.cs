@@ -67,6 +67,12 @@ public class SceneManagerScript : MonoBehaviour
 
             if (PlayerPrefs.HasKey("coin"))
                 newAmount = PlayerPrefs.GetInt("coin");
+
+            AudioManager.AM.music.clip = AudioManager.AM.menuMusic;
+            AudioManager.AM.music.Play();
+
+            AudioManager.AM.playerSFX.clip = null;
+            AudioManager.AM.SFX.clip = null;
         }
     }
 
@@ -101,6 +107,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void StartGame()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         buttons.SetActive(false);
         loadingCanvas.SetActive(true);
         background.sprite = normalBackgroundImg;
@@ -109,24 +116,29 @@ public class SceneManagerScript : MonoBehaviour
 
     public void Settings()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         settingsPanel.SetActive(true);
         buttons.SetActive(false);
     }
 
     public void Store()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         storePanel.SetActive(true);
         buttons.SetActive(false);   
     }
 
     public void Credits()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         creditsPanel.SetActive(true);
         buttons.SetActive(false);
     }
 
     public void Back()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
+
         if (sceneName == "MainMenu")
         {
             if (confirmationPanel)
@@ -141,6 +153,7 @@ public class SceneManagerScript : MonoBehaviour
             {
                 if (settingsPanel.activeSelf || storePanel.activeSelf || creditsPanel.activeSelf)
                 {
+                    overlay.gameObject.SetActive(false);
                     settingsPanel.SetActive(false);
                     storePanel.SetActive(false);
                     creditsPanel.SetActive(false);
@@ -160,6 +173,8 @@ public class SceneManagerScript : MonoBehaviour
 
     public void Confirmation(int choice)
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
+
         // "0" = no    // "1" = yes
         if (choice == 1)
         {

@@ -9,7 +9,7 @@ public class Tutorial : MonoBehaviour
     private TextMeshProUGUI symbolTutorial;
 
     public float textFade = 0.03f;
-    public float waitTime = 1f;
+    public float waitTime = 0.5f;
 
     private int firstTime;
 
@@ -40,9 +40,9 @@ public class Tutorial : MonoBehaviour
 
         for (float f = 0.05f; f <= 1.05f; f += 0.05f)
         {
-            Color c1 = tiltTutorial.color;
-            c1.a = f;
-            tiltTutorial.color = c1;
+            Color t1 = tiltTutorial.color;
+            t1.a = f;
+            tiltTutorial.color = t1;
             yield return new WaitForSeconds(textFade);
         }
 
@@ -55,13 +55,17 @@ public class Tutorial : MonoBehaviour
 
         for (float f = 1f; f >= -0.05f; f -= 0.05f)
         {
-            Color c1 = tiltTutorial.color;
-            c1.a = f;
-            tiltTutorial.color = c1;
+            Color t1 = tiltTutorial.color;
+            t1.a = f;
+            tiltTutorial.color = t1;
             yield return new WaitForSeconds(textFade);
         }
 
         tiltTutorial.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(waitTime);
+
+        StartCoroutine(SymbolTutorialFadeIn());
     }
 
     IEnumerator SymbolTutorialFadeIn()
@@ -70,9 +74,9 @@ public class Tutorial : MonoBehaviour
 
         for (float f = 0.05f; f <= 1.05f; f += 0.05f)
         {
-            Color c1 = symbolTutorial.color;
-            c1.a = f;
-            symbolTutorial.color = c1;
+            Color t2 = symbolTutorial.color;
+            t2.a = f;
+            symbolTutorial.color = t2;
             yield return new WaitForSeconds(textFade);
         }
 
@@ -85,12 +89,13 @@ public class Tutorial : MonoBehaviour
 
         for (float f = 1f; f >= -0.05f; f -= 0.05f)
         {
-            Color c1 = symbolTutorial.color;
-            c1.a = f;
-            symbolTutorial.color = c1;
+            Color t2 = symbolTutorial.color;
+            t2.a = f;
+            symbolTutorial.color = t2;
             yield return new WaitForSeconds(textFade);
         }
 
         symbolTutorial.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

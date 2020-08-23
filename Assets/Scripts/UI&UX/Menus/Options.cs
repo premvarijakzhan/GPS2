@@ -16,10 +16,10 @@ public class Options : MonoBehaviour
 
         if (firstPlay == 0)
         {
-            musicSlider.value = 0.5f;
+            musicSlider.value = 0.15f;
             AudioManager.AM.SetMusicVolume(musicSlider.value);
 
-            SFXSlider.value = 0.5f;
+            SFXSlider.value = 0.6f;
             AudioManager.AM.SetSFXVolume(SFXSlider.value);
 
             PlayerPrefs.SetInt("FirstPlay", -1);

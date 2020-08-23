@@ -26,6 +26,9 @@ public class GameOver : MonoBehaviour
 
         if (PlayerPrefs.HasKey("coin"))
             newAmount = PlayerPrefs.GetInt("coin");
+
+        AudioManager.AM.playerSFX.clip = null;
+        AudioManager.AM.SFX.clip = null;
     }
 
     void Update()
@@ -51,11 +54,13 @@ public class GameOver : MonoBehaviour
 
     public void RunAgain()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         SceneManager.LoadScene("GameScene");
     }
 
     public void MainMenu()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         SceneManager.LoadScene("MainMenu");
     }
 }

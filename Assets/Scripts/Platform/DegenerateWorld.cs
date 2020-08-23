@@ -7,7 +7,7 @@ public class DegenerateWorld : MonoBehaviour
 
     void Awake()
     {
-        dummyTraveller = new GameObject("dummy");
+        dummyTraveller = new GameObject("Dummy");
     }
 
     public static void RunDummy()

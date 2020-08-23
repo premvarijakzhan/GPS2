@@ -4,7 +4,14 @@ using UnityEngine;
 
 public enum AudioTag
 { 
-
+    SFX_TapButton,
+    SFX_BuyItem,
+    SFX_GemCollection,
+    SFX_ShieldOn,
+    SFX_ShieldBurst,
+    SFX_BoosterOn,
+    SFX_Collision,
+    SFX_JumpingTurning
 }
 
 [System.Serializable]
@@ -19,10 +26,15 @@ public class AudioManager : MonoBehaviour
     public static AudioManager AM = null;
 
     public AudioSource music;
+    public AudioSource playerSFX;
     public AudioSource SFX;
 
     public AudioClip menuMusic;
     public AudioClip gameMusic;
+
+    public AudioClip runningSFX;
+    public AudioClip magnetSFX;
+
     public List<AudioList> audioList;
 
     void Awake()
@@ -36,9 +48,6 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        music.clip = menuMusic;
-        music.Play();
     }
 
     public void SetMusicVolume(float vol)
@@ -49,6 +58,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetSFXVolume(float vol)
     {
+        playerSFX.volume = vol;
         SFX.volume = vol;
         PlayerPrefs.SetFloat("SFX", vol);
     }
@@ -69,8 +79,13 @@ public class AudioManager : MonoBehaviour
         SFX.PlayOneShot(FindAudioClip(tag));
     }
 
-    public void StopAudio()
+    public void StopSFX()
     {
         SFX.Stop();
+    }
+
+    public void StopPlayerSFX()
+    {
+        playerSFX.Stop();
     }
 }

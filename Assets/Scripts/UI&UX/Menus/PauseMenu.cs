@@ -27,14 +27,17 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         pauseButton.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        AudioManager.AM.StopPlayerSFX();
     }
 
     public void Resume()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         countDownDisplay.gameObject.SetActive(true);
         pauseMenuUI.SetActive(false);
         StartCoroutine(GetReady());
@@ -42,10 +45,15 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        AudioManager.AM.PlaySFX(AudioTag.SFX_TapButton);
         SceneManager.LoadScene("MainMenu");
         GameManagerScript.coin = 0;
         GameManagerScript.score = 0;
         GameManagerScript.distance = 0;
+        SymbolManager.SM.isComplete = false;
+        SymbolManager.SM.turnRight = false;
+        SymbolManager.SM.turnLeft = false;
+        SymbolManager.SM.canJump = false;
         Time.timeScale = 1f;
     }
 
@@ -56,11 +64,13 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             Time.timeScale = 0f;
             dt.DestroyTrail();
+            AudioManager.AM.StopPlayerSFX();
         }
         else
         {
             pauseMenuUI.SetActive(true);
             pauseButton.SetActive(false);
+            AudioManager.AM.StopPlayerSFX();
         }
     }
 
@@ -83,6 +93,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         countDown = 3;
+        AudioManager.AM.playerSFX.Play();
     }
 
     IEnumerator WaitForRealSeconds(float waitTime)

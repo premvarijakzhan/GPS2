@@ -61,13 +61,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65adb8b3fefb9842bf84d6a3e3ee95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  jumpForce: 0
+  speed: 6
+  jumpForce: 3
   isGrounded: 0
   isJumping: 0
   magnet: {fileID: 7179056106187665406}
   shield: {fileID: 2856364745505386466}
   usedShield: 0
+  isPlaying: 0
+  cc: {fileID: 8286178151419223856}
 --- !u!1001 &4853512913443602047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +145,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4853512913443602047}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8286178151419223856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3577352786882437455, guid: 7463212ca8ce5c44380130250b34223d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4853512913443602047}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a14c2c42cb6c34da28af7feac7a4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7179056106187665406 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2376217498337513857, guid: 7463212ca8ce5c44380130250b34223d,

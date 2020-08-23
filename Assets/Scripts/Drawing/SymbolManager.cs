@@ -132,9 +132,8 @@ public class SymbolManager : MonoBehaviour
 
             if (symbol1 != null && symbol1.name == st.symbol.name)
             {
-                if (isComplete)
+                if (isComplete && triggerCount == 5)
                 {
-                    triggerCount = st.nodes;
                     DoFunction(st.function);
                     Destroy(symbol1);
                     Destroy(symbol2);
@@ -145,9 +144,9 @@ public class SymbolManager : MonoBehaviour
 
             if (symbol2 != null && symbol2.name == st.symbol.name)
             {
-                if (isComplete)
+                if (isComplete && triggerCount == 4)
                 {
-                    DoFunction(SymbolFunction.Left);
+                    DoFunction(st.function);
                     Destroy(symbol1);
                     Destroy(symbol2);
                 }

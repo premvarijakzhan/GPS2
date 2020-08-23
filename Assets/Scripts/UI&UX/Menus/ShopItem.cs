@@ -98,6 +98,7 @@ public class ShopItem : MonoBehaviour
             SMS.newAmount -= cost;
             PlayerPrefs.SetInt("coin", SMS.newAmount);
             SMS.coinText.text = SMS.newAmount.ToString();
+            AudioManager.AM.PlaySFX(AudioTag.SFX_BuyItem);
         }
 
         if (upgradeSlot < MAXIMUM_SLOT - 1)

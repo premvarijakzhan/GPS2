@@ -55,6 +55,9 @@ public class Magnet : MonoBehaviour
 
                 Player.magnetActive = false;
                 Player.moveToPlayer = false;
+                AudioManager.AM.StopSFX();
+                AudioManager.AM.SFX.clip = null;
+                AudioManager.AM.SFX.loop = false;
             }
         }
     }

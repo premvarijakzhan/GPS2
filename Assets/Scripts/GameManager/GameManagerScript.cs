@@ -18,7 +18,7 @@ public class GameManagerScript : MonoBehaviour
     public float inactiveTimer = 1f;
 
     public static float defaultSpeed = 0.15f;
-    public static float boostSpeed = 0.3f;
+    public static float boostSpeed = 0.25f;
     public static float distance;
     private float targetDistance = 50f;
     float startTime;
@@ -54,6 +54,10 @@ public class GameManagerScript : MonoBehaviour
             SceneManager.LoadScene("GameOver");
             isGameOver = false;
             SymbolManager.SM.triggerCount = 0;
+            SymbolManager.SM.isComplete = false;
+            SymbolManager.SM.turnRight = false;
+            SymbolManager.SM.turnLeft = false;
+            SymbolManager.SM.canJump = false;
             Destroy(SymbolManager.SM.symbol);
             Destroy(SymbolManager.SM.symbol1);
             Destroy(SymbolManager.SM.symbol2);

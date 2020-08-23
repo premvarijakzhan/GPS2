@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     public bool isJumping = false;
     public static bool canTurn = false;
 
+    private bool turnRight = false;
+    private bool turnLeft = false;
+
     public static bool magnetActive;
     public static bool moveToPlayer = false;
     public GameObject magnet;
@@ -26,9 +29,11 @@ public class Player : MonoBehaviour
 
     public static bool boosterActive;
 
-    public GameObject tiltTutorial;
-
     public static bool isDead;
+
+    public bool isPlaying = false;
+
+    public CameraController cc;
 
     void Start()
     {
@@ -43,23 +48,31 @@ public class Player : MonoBehaviour
         boosterActive = false;
 
         isDead = false;
+
+        AudioManager.AM.playerSFX.clip = AudioManager.AM.runningSFX;
+        AudioManager.AM.playerSFX.Play();
     }
 
     void Update()
     {
-        transform.Translate(Input.acceleration.x * speed * Time.smoothDeltaTime, 0f, 0f, Space.Self);
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.6f, 1.6f), transform.position.y, transform.position.z);
-        movement.y = rb.velocity.y;
-        rb.velocity = movement;
+        if (Time.timeSinceLevelLoad > cc.animationDuration)
+        {
+            transform.Translate(Input.acceleration.x * speed * Time.smoothDeltaTime, 0f, 0f, Space.Self);
+            movement.y = rb.velocity.y;
+            rb.velocity = movement;
+        }     
 
         if (SymbolManager.SM.turnRight && canTurn)
         {
+            AudioManager.AM.PlaySFX(AudioTag.SFX_JumpingTurning);
             transform.Rotate(Vector3.up * 90);
-            //StartCoroutine(RotatePlayer(Vector3.up * 90, 0.8f));
+            //turnRight = true;
+
             DegenerateWorld.dummyTraveller.transform.forward = -this.transform.forward;
             DegenerateWorld.RunDummy();
 
-            if (!DegenerateWorld.lastPlatform.CompareTag("platformTSection"))
+            if (!DegenerateWorld.lastPlatform.CompareTag("platformTSection") || !DegenerateWorld.lastPlatform.CompareTag("platformLSectionRight") ||
+                !DegenerateWorld.lastPlatform.CompareTag("platformLSectionLeft"))
                 DegenerateWorld.RunDummy();
 
             this.transform.position = new Vector3(startPosition.x, this.transform.position.y, startPosition.z);
@@ -67,24 +80,20 @@ public class Player : MonoBehaviour
         }
         else if (SymbolManager.SM.turnLeft && canTurn)
         {
-            transform.Rotate(Vector3.up * -90);
-            //StartCoroutine(RotatePlayer(Vector3.up * -90, 0.8f));
+            AudioManager.AM.PlaySFX(AudioTag.SFX_JumpingTurning);
+            transform.Rotate(Vector3.up, -90);
+            //transform.Rotate(0f, -90f * (50f * Time.smoothDeltaTime), 0f);
+            //turnLeft = true;
+
             DegenerateWorld.dummyTraveller.transform.forward = -this.transform.forward;
             DegenerateWorld.RunDummy();
 
-            if (!DegenerateWorld.lastPlatform.CompareTag("platformTSection"))
+            if (!DegenerateWorld.lastPlatform.CompareTag("platformTSection") || !DegenerateWorld.lastPlatform.CompareTag("platformLSectionRight") ||
+                !DegenerateWorld.lastPlatform.CompareTag("platformLSectionLeft"))
                 DegenerateWorld.RunDummy();
 
             this.transform.position = new Vector3(startPosition.x, this.transform.position.y, startPosition.z);
             SymbolManager.SM.turnLeft = false;
-        }
-
-        if (isGrounded)
-        {
-            if (SymbolManager.SM.canJump && !isJumping)
-            {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
         }
 
         if (transform.position.y < 1f)
@@ -100,15 +109,30 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator RotatePlayer(Vector3 byAngles, float inTime)
+    void FixedUpdate()
     {
-        Quaternion fromAngle = transform.rotation;
-        Quaternion toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
-
-        for (float t = 0f; t < 1; t += Time.deltaTime / inTime)
+        if (isGrounded)
         {
-            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
-            yield return null;
+            if (SymbolManager.SM.canJump && !isJumping)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                AudioManager.AM.PlaySFX(AudioTag.SFX_JumpingTurning);
+            }
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (turnRight)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime * 5f);
+            DegenerateWorld.dummyTraveller.transform.position = DegenerateWorld.lastPlatform.transform.position + transform.forward * 20f;
+        }
+
+        if (turnLeft)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime * 5f);
+            DegenerateWorld.dummyTraveller.transform.position = DegenerateWorld.lastPlatform.transform.position + transform.forward * 20f;
         }
     }
 
@@ -140,32 +164,35 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("ObstaclesTrigger"))
             SymbolManager.SM.SpawnSymbol(SymbolTag.Alpha);
 
-        if (other.gameObject.CompareTag("Obstacles") || other.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Obstacles"))
         {
             if (shieldActive)
             {
                 shield.gameObject.SetActive(false);
                 shieldActive = false;
                 usedShield = true;
+                Destroy(SymbolManager.SM.symbol);
+                AudioManager.AM.PlaySFX(AudioTag.SFX_ShieldBurst);
             }
             else if (!shieldActive && !usedShield)
             {
+                if (!isPlaying)
+                {
+                    AudioManager.AM.PlaySFX(AudioTag.SFX_Collision);
+                    isPlaying = true;
+                }
+                
                 rb.isKinematic = true;
                 isDead = true;
                 StartCoroutine(PlayerDead());
             }
         }
 
-        if (other.gameObject.CompareTag("Box"))
-        {
-            if (shieldActive)
-                Destroy(SymbolManager.SM.symbol);
-        }
-
         if (other.gameObject.CompareTag("Gem"))
         {
             Destroy(other.gameObject);
             GameManagerScript.GMS.UpdateCoins();
+            AudioManager.AM.PlaySFX(AudioTag.SFX_GemCollection);
         }
 
         if (other.gameObject.CompareTag("Magnet"))
@@ -173,6 +200,9 @@ public class Player : MonoBehaviour
             magnet.gameObject.SetActive(true);
             magnetActive = true;
             Destroy(other.gameObject);
+            AudioManager.AM.SFX.clip = AudioManager.AM.magnetSFX;
+            AudioManager.AM.SFX.Play();
+            AudioManager.AM.SFX.loop = true;
         }
 
         if (other.gameObject.CompareTag("Shield"))
@@ -180,6 +210,7 @@ public class Player : MonoBehaviour
             shield.gameObject.SetActive(true);
             shieldActive = true;
             Destroy(other.gameObject);
+            AudioManager.AM.PlaySFX(AudioTag.SFX_ShieldOn);
         }
 
         if (other.gameObject.CompareTag("Booster"))
@@ -187,16 +218,11 @@ public class Player : MonoBehaviour
             boosterActive = true;
             Destroy(other.gameObject);
         }
-
-        if (other.gameObject.name == "TutorialTrigger")
-        {
-
-        }
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Obstacles") || other.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Obstacles"))
         {
             if (usedShield)
             {
@@ -231,6 +257,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("DeathCollider"))
         {
+            AudioManager.AM.PlaySFX(AudioTag.SFX_Collision);
             isDead = true;
             StartCoroutine(PlayerDead());
         }
@@ -250,10 +277,5 @@ public class Player : MonoBehaviour
         isGrounded = false;
         isJumping = true;
         SymbolManager.SM.canJump = false;
-
-        if (other.gameObject.CompareTag("Obstacles") || other.gameObject.CompareTag("Box"))
-        {
-            rb.isKinematic = false;
-        }
     }
 }

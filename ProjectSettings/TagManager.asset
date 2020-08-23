@@ -16,7 +16,6 @@ TagManager:
   - Shield
   - Booster
   - TurnTrigger
-  - Box
   - DeathCollider
   layers:
   - Default
