@@ -126,8 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410cee7d4e4ce5843a799cfb2d06195e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBoosterTimer: 0
-  upgradeBoosterTimer: 0
+  boosterTimer: 0
 --- !u!114 &3747325213136479114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9b0dee5aed2704a80d86072541be0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inactivate: 0
 --- !u!65 &6849591138272728829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -151,8 +151,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 10}
-  m_Center: {x: 3, y: 1.5, z: 0}
+  m_Size: {x: 1, y: 5, z: 10}
+  m_Center: {x: 3, y: 3.5, z: 0}
 --- !u!65 &5146646040025942989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -164,8 +164,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 10}
-  m_Center: {x: -3, y: 1.5, z: 0}
+  m_Size: {x: 1, y: 5, z: 10}
+  m_Center: {x: -3, y: 3.5, z: 0}
 --- !u!1001 &991143253834254214
 PrefabInstance:
   m_ObjectHideFlags: 0

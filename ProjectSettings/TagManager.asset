@@ -17,6 +17,7 @@ TagManager:
   - Booster
   - TurnTrigger
   - DeathCollider
+  - Chaser
   layers:
   - Default
   - TransparentFX

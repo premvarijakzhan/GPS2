@@ -2,10 +2,18 @@
 
 public class Deactivate : MonoBehaviour
 {
+    public bool inactivate;
+
+    void Start()
+    {
+        if (inactivate)
+            Invoke("SetInactive", 4f);
+    }
+
     void OnCollisionExit(Collision player)
     {
-        if (player.gameObject.CompareTag("Player"))
-            Invoke("SetInactive", 4.0f);
+        if (player.gameObject.CompareTag("Player") || player.gameObject.CompareTag("Chaser"))
+            Invoke("SetInactive", 4f);
     }
 
     void SetInactive()

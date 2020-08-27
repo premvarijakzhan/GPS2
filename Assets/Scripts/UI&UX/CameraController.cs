@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         moveVector = player.position + startOffset;
-        moveVector.y = Mathf.Clamp(moveVector.y, 3, 8);
+        moveVector.y = Mathf.Clamp(moveVector.y, 3, 10);
 
         if (transition < 1f)
         {

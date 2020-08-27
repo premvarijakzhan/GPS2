@@ -7,9 +7,7 @@ public enum AudioTag
     SFX_TapButton,
     SFX_BuyItem,
     SFX_GemCollection,
-    SFX_ShieldOn,
-    SFX_ShieldBurst,
-    SFX_BoosterOn,
+    SFX_Shield,
     SFX_Collision,
     SFX_JumpingTurning
 }
@@ -32,7 +30,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip gameMusic;
 
-    public AudioClip runningSFX;
     public AudioClip magnetSFX;
 
     public List<AudioList> audioList;

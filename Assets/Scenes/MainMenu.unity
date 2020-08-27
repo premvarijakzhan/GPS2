@@ -1158,13 +1158,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879c649e2ca5d8149b8332eca0f24f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SMS: {fileID: 0}
   upgradeSlots:
   - {fileID: 29706100}
   - {fileID: 1608901015}
   - {fileID: 1143918011}
   descriptionText: {fileID: 652208061}
   upgradeBtn: {fileID: 1635640417}
-  buttonText: {fileID: 0}
+  buttonText: {fileID: 910056744}
   duration: 5
 --- !u!1 &132591328 stripped
 GameObject:
@@ -2450,7 +2451,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 40, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &592161934
 MonoBehaviour:
@@ -2465,14 +2466,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 90a5f6b34d7c8534c82542ffe1ba53eb, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3338,6 +3339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae8f1234a71e3646a5da84dc33fafcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SMS: {fileID: 0}
 --- !u!1 &732144080
 GameObject:
   m_ObjectHideFlags: 0
@@ -5896,8 +5898,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7310,7 +7312,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2143669720}
+      - m_Target: {fileID: 728703960}
         m_MethodName: Back
         m_Mode: 1
         m_Arguments:
@@ -7635,13 +7637,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879c649e2ca5d8149b8332eca0f24f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SMS: {fileID: 0}
   upgradeSlots:
   - {fileID: 552559128}
   - {fileID: 625564257}
   - {fileID: 1926703960}
   descriptionText: {fileID: 1926491535}
   upgradeBtn: {fileID: 1612236699}
-  buttonText: {fileID: 0}
+  buttonText: {fileID: 1133776678}
   duration: 5
 --- !u!1 &1789760086
 GameObject:
@@ -7853,13 +7856,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879c649e2ca5d8149b8332eca0f24f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SMS: {fileID: 0}
   upgradeSlots:
   - {fileID: 1839091058}
   - {fileID: 1609210375}
   - {fileID: 132591328}
   descriptionText: {fileID: 712167369}
   upgradeBtn: {fileID: 1034345412}
-  buttonText: {fileID: 0}
+  buttonText: {fileID: 956818452}
   duration: 5
 --- !u!1 &1839091058 stripped
 GameObject:
@@ -9086,7 +9090,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_SizeDelta: {x: 15, y: -22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2082888580
 MonoBehaviour:
@@ -9101,14 +9105,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a03587995322a794a922601a5fd0b076, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9326,7 +9330,7 @@ PrefabInstance:
         type: 3}
       propertyPath: coinText
       value: 
-      objectReference: {fileID: 732144082}
+      objectReference: {fileID: 0}
     - target: {fileID: 5167045343010528570, guid: 9bb2276394e3490419f9e3b937497534,
         type: 3}
       propertyPath: normalBackgroundImg

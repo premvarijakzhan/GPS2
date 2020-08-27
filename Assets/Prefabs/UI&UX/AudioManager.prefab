@@ -41,7 +41,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a73a0adf066141a458dbd804c3352695, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -273,26 +273,21 @@ MonoBehaviour:
   playerSFX: {fileID: 6395412862740408776}
   SFX: {fileID: 5622440093862457479}
   menuMusic: {fileID: 8300000, guid: c21ec54c6db169a44a8934de7003b696, type: 3}
-  gameMusic: {fileID: 8300000, guid: 700d3fe52a6cdc64dbe8a9561f38d229, type: 3}
-  runningSFX: {fileID: 8300000, guid: a73a0adf066141a458dbd804c3352695, type: 3}
+  gameMusic: {fileID: 8300000, guid: c1c85fadded65214ca37327de993c5bf, type: 3}
   magnetSFX: {fileID: 8300000, guid: fe4b3e447e6e23f42851412f020a276b, type: 3}
   audioList:
   - clip: {fileID: 8300000, guid: 59da6bb1bdb07614ba5c8e5353e8cca2, type: 3}
     tag: 0
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 230d13f0b7011f741bea14b036fbd5ca, type: 3}
     tag: 1
   - clip: {fileID: 8300000, guid: 9ae25fad768ea8043997ffac13cc6a82, type: 3}
     tag: 2
   - clip: {fileID: 8300000, guid: 117f0695218c2e14bae78700509735e3, type: 3}
     tag: 3
-  - clip: {fileID: 0}
-    tag: 4
-  - clip: {fileID: 0}
-    tag: 5
   - clip: {fileID: 8300000, guid: 2ebd141e166525f4ba46ee3d2fdb5de7, type: 3}
-    tag: 6
+    tag: 4
   - clip: {fileID: 8300000, guid: 9d68b3179c2482f4b8c8759adfaa21b8, type: 3}
-    tag: 7
+    tag: 5
 --- !u!1 &8224501973145974001
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ShopItem : MonoBehaviour
 {
-    private SceneManagerScript SMS;
+    public SceneManagerScript SMS;
 
     public GameObject[] upgradeSlots;
 
@@ -21,8 +22,14 @@ public class ShopItem : MonoBehaviour
     private int cost = 100;
     public float duration = 5;
 
+    private Scene scene;
+    private string sceneName;
+
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
+        sceneName = scene.name;
+
         SMS = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
 
         PlayerPrefs.SetString("Object", gameObject.name);
@@ -40,9 +47,9 @@ public class ShopItem : MonoBehaviour
         {
             PlayerPrefs.SetFloat("InitialDuration" + objectName, duration);
 
-            if (SMS.newAmount >= cost)
+            if (PlayerPrefs.GetInt("coin") >= cost)
                 upgradeBtn.interactable = true;
-            else if (SMS.newAmount < cost)
+            else if (PlayerPrefs.GetInt("coin") < cost)
                 upgradeBtn.interactable = false;
         }
 
@@ -79,9 +86,11 @@ public class ShopItem : MonoBehaviour
             buttonText.text = "MAX";
         }
 
-        if (SMS.newAmount >= cost)
+        SMS = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
+
+        if (PlayerPrefs.GetInt("coin") >= cost)
             upgradeBtn.interactable = true;
-        else if (SMS.newAmount < cost)
+        else if (PlayerPrefs.GetInt("coin") < cost)
             upgradeBtn.interactable = false;
     }
 
@@ -89,15 +98,15 @@ public class ShopItem : MonoBehaviour
     {
         PlayerPrefs.SetInt("UpgradeTime" + objectName, -1);
 
-        if (SMS.newAmount >= cost)
+        if (ShopSystem.SS.SMS.newAmount >= cost)
         {
             upgradeSlots[upgradeSlot].SetActive(true);
             upgradeSlot++;      
             PlayerPrefs.SetInt("Upgrade" + objectName, upgradeSlot);
 
-            SMS.newAmount -= cost;
-            PlayerPrefs.SetInt("coin", SMS.newAmount);
-            SMS.coinText.text = SMS.newAmount.ToString();
+            ShopSystem.SS.SMS.newAmount -= cost;
+            PlayerPrefs.SetInt("coin", ShopSystem.SS.SMS.newAmount);
+            ShopSystem.SS.SMS.coinText.text = ShopSystem.SS.SMS.newAmount.ToString();
             AudioManager.AM.PlaySFX(AudioTag.SFX_BuyItem);
         }
 

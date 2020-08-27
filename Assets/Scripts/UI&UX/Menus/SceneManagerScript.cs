@@ -48,6 +48,7 @@ public class SceneManagerScript : MonoBehaviour
             confirmationPanel = GameObject.Find("MainMenuCanvas").transform.GetChild(6).gameObject;
             fadePanel = GameObject.Find("MainMenuCanvas").transform.GetChild(7).GetComponent<Image>();
             storePanel = GameObject.Find("StoreCanvas").transform.GetChild(0).gameObject;
+            coinText = storePanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
             loadingCanvas.SetActive(false);
             overlay.gameObject.SetActive(false);
@@ -71,7 +72,8 @@ public class SceneManagerScript : MonoBehaviour
             AudioManager.AM.music.clip = AudioManager.AM.menuMusic;
             AudioManager.AM.music.Play();
 
-            AudioManager.AM.playerSFX.clip = null;
+            AudioManager.AM.StopPlayerSFX();
+            AudioManager.AM.StopSFX();
             AudioManager.AM.SFX.clip = null;
         }
     }

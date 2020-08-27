@@ -13,7 +13,9 @@ public class PowerupSpawner : MonoBehaviour
     {
         int randomPowerup = Random.Range(0, powerupObjs.Length);
         powerupObj = Instantiate(powerupObjs[randomPowerup], spawnPoint.position, Quaternion.identity) as GameObject;
+        powerupObj.transform.rotation = Quaternion.identity;
         powerupObj.transform.SetParent(spawnPoint);
+        powerupObj.transform.rotation = spawnPoint.transform.rotation;
     }
 
     void OnCollisionExit(Collision collision)
@@ -24,14 +26,18 @@ public class PowerupSpawner : MonoBehaviour
             {
                 int randomPowerup = Random.Range(0, powerupObjs.Length);
                 powerupObj = Instantiate(powerupObjs[randomPowerup], spawnPoint.position, Quaternion.identity) as GameObject;
+                powerupObj.transform.rotation = Quaternion.identity;
                 powerupObj.transform.SetParent(spawnPoint);
+                powerupObj.transform.rotation = spawnPoint.transform.rotation;
             }
             else
             {
                 Destroy(powerupObj);
                 int randomPowerup = Random.Range(0, powerupObjs.Length);
                 powerupObj = Instantiate(powerupObjs[randomPowerup], spawnPoint.position, Quaternion.identity) as GameObject;
+                powerupObj.transform.rotation = Quaternion.identity;
                 powerupObj.transform.SetParent(spawnPoint);
+                powerupObj.transform.rotation = spawnPoint.transform.rotation;
             }
         }
     }

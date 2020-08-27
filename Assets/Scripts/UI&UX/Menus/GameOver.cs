@@ -26,9 +26,6 @@ public class GameOver : MonoBehaviour
 
         if (PlayerPrefs.HasKey("coin"))
             newAmount = PlayerPrefs.GetInt("coin");
-
-        AudioManager.AM.playerSFX.clip = null;
-        AudioManager.AM.SFX.clip = null;
     }
 
     void Update()

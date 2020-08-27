@@ -51,16 +51,17 @@ public class GameManagerScript : MonoBehaviour
     {
         if (isGameOver)
         {
+            AudioManager.AM.StopSFX();
+            AudioManager.AM.SFX.clip = null;
+
             SceneManager.LoadScene("GameOver");
             isGameOver = false;
+            
             SymbolManager.SM.triggerCount = 0;
             SymbolManager.SM.isComplete = false;
             SymbolManager.SM.turnRight = false;
             SymbolManager.SM.turnLeft = false;
             SymbolManager.SM.canJump = false;
-            Destroy(SymbolManager.SM.symbol);
-            Destroy(SymbolManager.SM.symbol1);
-            Destroy(SymbolManager.SM.symbol2);
         }
     }
 

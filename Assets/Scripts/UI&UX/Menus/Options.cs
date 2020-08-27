@@ -16,7 +16,7 @@ public class Options : MonoBehaviour
 
         if (firstPlay == 0)
         {
-            musicSlider.value = 0.15f;
+            musicSlider.value = 0.25f;
             AudioManager.AM.SetMusicVolume(musicSlider.value);
 
             SFXSlider.value = 0.6f;

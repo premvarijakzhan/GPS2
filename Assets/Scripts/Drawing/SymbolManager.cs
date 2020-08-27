@@ -6,7 +6,7 @@ public enum SymbolTag
 {
     Square,
     Triangle,
-    Alpha
+    Arrow
 }
 
 public enum SymbolFunction
@@ -73,14 +73,14 @@ public class SymbolManager : MonoBehaviour
         {
             if (symbolType[i].tag == tag1)
             {
-                symbol1 = Instantiate(symbolType[i].symbol, new Vector3(2.3f, -200f, -5f), Quaternion.identity);
+                symbol1 = Instantiate(symbolType[i].symbol, new Vector3(2f, -200f, -5f), Quaternion.identity);
                 symbol1.name = symbolType[i].symbol.name;
                 symbol1.transform.SetParent(transform);
             }
 
             if (symbolType[i].tag == tag2)
             {
-                symbol2 = Instantiate(symbolType[i].symbol, new Vector3(-2.3f, -200f, -5f), Quaternion.identity);
+                symbol2 = Instantiate(symbolType[i].symbol, new Vector3(-2f, -200f, -5f), Quaternion.identity);
                 symbol2.name = symbolType[i].symbol.name;
                 symbol2.transform.SetParent(transform);
             }
